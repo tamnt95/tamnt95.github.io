@@ -10,6 +10,7 @@ $( document ).ready( function () {
 		headers: {
 			"Authorization": "Basic " + btoa("poseidon12495:c7f82d3e-5d8c-11e8-8e2a-6011996e9463")
 		},
+		
 		success: function (res){
 			console.log("ICE List: "+res.v.iceServers);
 		}
