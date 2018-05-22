@@ -2,20 +2,6 @@ const socket = io('https://mypeer3000.herokuapp.com/');
 
 $('#div-chat').hide();
 
-// $( document ).ready( function () {
-// 	$.ajax ({
-// 		url: "https://global.xirsys.net/_turn/tamnt95.github.io/",
-// 		type: "PUT",
-// 		async: false,
-// 		headers: {
-// 			"Authorization": "Basic " + btoa("poseidon12495:c7f82d3e-5d8c-11e8-8e2a-6011996e9463")
-// 		},
-
-// 		success: function (res){
-// 			console.log("ICE List: "+res.v.iceServers);
-// 		}
-// 	});
-// });
 socket.on('DANH_SACH_ONLINE', arrUserInfo => {
 	$('#div-chat').show();
 	$('#div-dangky').hide();
@@ -54,12 +40,7 @@ openStream()
 .then(stream => playStream('localStream',stream));
 
 // var clientid = Math.random().toString(36).slice(2).slice(0, 6);
-var peer = new Peer({
-	key: 'peerjs',
-	host: 'frtwebrtc.herokuapp.com', 
-	port: 443, 
-	secure: true, 
-});
+var peer = new Peer({key: 'peerjs', host: 'frtwebrtc.herokuapp.com', port: 443, secure: true,});
 // const peer = new Peer({ key: 'tkv5g2acaree9udi'});
 peer.on('open', id => {
 	$('#my-peer').append(id);
