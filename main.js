@@ -2,25 +2,19 @@ const socket = io('https://mypeer3000.herokuapp.com/');
 
 $('#div-chat').hide();
 
-let customConfig;
-
-$.ajax({
-	url: "https://service.xirsys.com/ice",
-	data: {
-		ident: "poseidon12495",
-		secret: "c7f82d3e-5d8c-11e8-8e2a-6011996e9463",
-		domain: "tamnt95.github.io",
-		application: "default",
-		room: "default",
-		secure: 1
-	},
-	success: function (data, status){
-		customConfig = data.d;
-		console.log(customConfig);
-	},
-	async: false
-});
-
+$( document ).ready( function () {
+	$.ajax ({
+		url: "https://global.xirsys.net/_turn/tamnt95.github.io/",
+		type: "PUT",
+		async: false,
+		headers: {
+			"Authorization": "Basic " + btoa("poseidon12495:c7f82d3e-5d8c-11e8-8e2a-6011996e9463")
+		},
+		success: function (res){
+			console.log("ICE List: "+res.v.iceServers);
+		}
+	});
+})
 socket.on('DANH_SACH_ONLINE', arrUserInfo => {
 	$('#div-chat').show();
 	$('#div-dangky').hide();
@@ -64,7 +58,6 @@ var peer = new Peer({
 	host: 'frtwebrtc.herokuapp.com', 
 	port: 443, 
 	secure: true, 
-	config: customConfig
 });
 // const peer = new Peer({ key: 'tkv5g2acaree9udi'});
 peer.on('open', id => {
